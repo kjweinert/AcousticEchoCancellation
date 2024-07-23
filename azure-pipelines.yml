@@ -27,7 +27,14 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+- task: HCLAppScanOnCloud@2
+  inputs:
+    AppSecTestService: 'oldone'
+    applications: '2433ac8c-4059-e811-9423-002590ac753d'
+    scanname: 'acousticecho'
+    scantype: 'static'
+    scanMethod: 'IRX'
+    includeSCA: false
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
